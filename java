@@ -2,46 +2,78 @@ import java.util.Scanner;
 
 public class Main {
 
-    // Method to swap two numbers
-    public static void swapNumbers(int a, int b) {
-        System.out.println("Before Swap:");
-        System.out.println("a = " + a + ", b = " + b);
+    // Swap two numbers
+    public static void swap(int a, int b) {
+        System.out.println("Before Swap: a = " + a + ", b = " + b);
 
         int temp = a;
         a = b;
         b = temp;
 
-        System.out.println("After Swap:");
-        System.out.println("a = " + a + ", b = " + b);
+        System.out.println("After Swap: a = " + a + ", b = " + b);
     }
 
-    // Method to check even or odd
-    public static void checkEvenOdd(int num) {
-        if (num % 2 == 0) {
+    // Check Even or Odd
+    public static void evenOdd(int num) {
+        if (num % 2 == 0)
             System.out.println(num + " is Even");
-        } else {
+        else
             System.out.println(num + " is Odd");
+    }
+
+    // Factorial
+    public static void factorial(int n) {
+        int fact = 1;
+        for (int i = 1; i <= n; i++) {
+            fact *= i;
         }
+        System.out.println("Factorial of " + n + " = " + fact);
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        int choice;
 
-        // Input for swap
-        System.out.print("Enter first number: ");
-        int a = scanner.nextInt();
+        do {
+            System.out.println("\n===== MENU =====");
+            System.out.println("1. Swap Numbers");
+            System.out.println("2. Check Even/Odd");
+            System.out.println("3. Factorial");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
 
-        System.out.print("Enter second number: ");
-        int b = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter first number: ");
+                    int a = sc.nextInt();
+                    System.out.print("Enter second number: ");
+                    int b = sc.nextInt();
+                    swap(a, b);
+                    break;
 
-        swapNumbers(a, b);
+                case 2:
+                    System.out.print("Enter number: ");
+                    int num = sc.nextInt();
+                    evenOdd(num);
+                    break;
 
-        // Input for even/odd
-        System.out.print("Enter a number to check Even/Odd: ");
-        int num = scanner.nextInt();
+                case 3:
+                    System.out.print("Enter number: ");
+                    int n = sc.nextInt();
+                    factorial(n);
+                    break;
 
-        checkEvenOdd(num);
+                case 4:
+                    System.out.println("Exiting program...");
+                    break;
 
-        scanner.close();
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
     }
 }
